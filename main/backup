@@ -1,0 +1,506 @@
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=strat,DIR=/home/mohamad/simulation/lib/inputs/topologies/strat/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=sp &
+	sleep 5	
+	sudo python main.py --strat -f s32.txt -s 3 -t rs
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f strat
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=jellyfish,DIR=/home/mohamad/simulation/lib/inputs/topologies/jellyfish/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=sp &
+	sleep 5	
+	sudo python main.py --jellyfish -f s32.txt -s 3 -t rs -i $i
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f jellyfish
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=xpander,DIR=/home/mohamad/simulation/lib/inputs/topologies/xpander/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=sp &
+	sleep 5	
+	sudo python main.py --xpander -f s32.txt -s 3 -t rs -i $i
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f xpander
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+python get_http_result.py > rssp.txt
+> /home/mohamad/simulation/lib/results/http_files/jellyfish.txt
+> /home/mohamad/simulation/lib/results/http_files/xpander.txt
+> /home/mohamad/simulation/lib/results/http_files/strat.txt
+> /home/mohamad/simulation/lib/results/traffic_rp.txt
+> /home/mohamad/simulation/lib/results/traffic_rs.txt
+> /home/mohamad/simulation/lib/results/traffic_bas.txt
+> /home/mohamad/simulation/lib/results/traffic_otm.txt
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=strat,DIR=/home/mohamad/simulation/lib/inputs/topologies/strat/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=sp &
+	sleep 5	
+	sudo python main.py --strat -f s32.txt -s 3 -t rp
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f strat
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=jellyfish,DIR=/home/mohamad/simulation/lib/inputs/topologies/jellyfish/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=sp &
+	sleep 5	
+	sudo python main.py --jellyfish -f s32.txt -s 3 -t rp -i $i
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f jellyfish
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=xpander,DIR=/home/mohamad/simulation/lib/inputs/topologies/xpander/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=sp &
+	sleep 5	
+	sudo python main.py --xpander -f s32.txt -s 3 -t rp -i $i
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f xpander
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+python get_http_result.py > rpsp.txt
+> /home/mohamad/simulation/lib/results/http_files/jellyfish.txt
+> /home/mohamad/simulation/lib/results/http_files/xpander.txt
+> /home/mohamad/simulation/lib/results/http_files/strat.txt
+> /home/mohamad/simulation/lib/results/traffic_rp.txt
+> /home/mohamad/simulation/lib/results/traffic_rs.txt
+> /home/mohamad/simulation/lib/results/traffic_bas.txt
+> /home/mohamad/simulation/lib/results/traffic_otm.txt
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=strat,DIR=/home/mohamad/simulation/lib/inputs/topologies/strat/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=sp &
+	sleep 5	
+	sudo python main.py --strat -f s32.txt -s 3 -t bas
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f strat
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=jellyfish,DIR=/home/mohamad/simulation/lib/inputs/topologies/jellyfish/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=sp &
+	sleep 5	
+	sudo python main.py --jellyfish -f s32.txt -s 3 -t bas -i $i
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f jellyfish
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=xpander,DIR=/home/mohamad/simulation/lib/inputs/topologies/xpander/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=sp &
+	sleep 5	
+	sudo python main.py --xpander -f s32.txt -s 3 -t bas -i $i
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f xpander
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+python get_http_result.py > bassp.txt
+> /home/mohamad/simulation/lib/results/http_files/jellyfish.txt
+> /home/mohamad/simulation/lib/results/http_files/xpander.txt
+> /home/mohamad/simulation/lib/results/http_files/strat.txt
+> /home/mohamad/simulation/lib/results/traffic_rp.txt
+> /home/mohamad/simulation/lib/results/traffic_rs.txt
+> /home/mohamad/simulation/lib/results/traffic_bas.txt
+> /home/mohamad/simulation/lib/results/traffic_otm.txt
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=strat,DIR=/home/mohamad/simulation/lib/inputs/topologies/strat/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=sp &
+	sleep 5	
+	sudo python main.py --strat -f s32.txt -s 3 -t otm
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f strat
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=jellyfish,DIR=/home/mohamad/simulation/lib/inputs/topologies/jellyfish/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=sp &
+	sleep 5	
+	sudo python main.py --jellyfish -f s32.txt -s 3 -t otm -i $i
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f jellyfish
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=xpander,DIR=/home/mohamad/simulation/lib/inputs/topologies/xpander/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=sp &
+	sleep 5	
+	sudo python main.py --xpander -f s32.txt -s 3 -t otm -i $i
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f xpander
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+python get_http_result.py > otmsp.txt
+> /home/mohamad/simulation/lib/results/http_files/jellyfish.txt
+> /home/mohamad/simulation/lib/results/http_files/xpander.txt
+> /home/mohamad/simulation/lib/results/http_files/strat.txt
+> /home/mohamad/simulation/lib/results/traffic_rp.txt
+> /home/mohamad/simulation/lib/results/traffic_rs.txt
+> /home/mohamad/simulation/lib/results/traffic_bas.txt
+> /home/mohamad/simulation/lib/results/traffic_otm.txt
+
+
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=strat,DIR=/home/mohamad/simulation/lib/inputs/topologies/strat/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=ksp &
+	sleep 5	
+	sudo python main.py --strat -f s32.txt -s 3 -t rs
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f strat
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=jellyfish,DIR=/home/mohamad/simulation/lib/inputs/topologies/jellyfish/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=ksp &
+	sleep 5	
+	sudo python main.py --jellyfish -f s32.txt -s 3 -t rs -i $i
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f jellyfish
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=xpander,DIR=/home/mohamad/simulation/lib/inputs/topologies/xpander/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=ksp &
+	sleep 5	
+	sudo python main.py --xpander -f s32.txt -s 3 -t rs -i $i
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f xpander
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+python get_http_result.py > rsksp.txt
+> /home/mohamad/simulation/lib/results/http_files/jellyfish.txt
+> /home/mohamad/simulation/lib/results/http_files/xpander.txt
+> /home/mohamad/simulation/lib/results/http_files/strat.txt
+> /home/mohamad/simulation/lib/results/traffic_rp.txt
+> /home/mohamad/simulation/lib/results/traffic_rs.txt
+> /home/mohamad/simulation/lib/results/traffic_bas.txt
+> /home/mohamad/simulation/lib/results/traffic_otm.txt
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=strat,DIR=/home/mohamad/simulation/lib/inputs/topologies/strat/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=ksp &
+	sleep 5	
+	sudo python main.py --strat -f s32.txt -s 3 -t rp
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f strat
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=jellyfish,DIR=/home/mohamad/simulation/lib/inputs/topologies/jellyfish/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=ksp &
+	sleep 5	
+	sudo python main.py --jellyfish -f s32.txt -s 3 -t rp -i $i
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f jellyfish
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=xpander,DIR=/home/mohamad/simulation/lib/inputs/topologies/xpander/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=ksp &
+	sleep 5	
+	sudo python main.py --xpander -f s32.txt -s 3 -t rp -i $i
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f xpander
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+python get_http_result.py > rpksp.txt
+> /home/mohamad/simulation/lib/results/http_files/jellyfish.txt
+> /home/mohamad/simulation/lib/results/http_files/xpander.txt
+> /home/mohamad/simulation/lib/results/http_files/strat.txt
+> /home/mohamad/simulation/lib/results/traffic_rp.txt
+> /home/mohamad/simulation/lib/results/traffic_rs.txt
+> /home/mohamad/simulation/lib/results/traffic_bas.txt
+> /home/mohamad/simulation/lib/results/traffic_otm.txt
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=strat,DIR=/home/mohamad/simulation/lib/inputs/topologies/strat/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=ksp &
+	sleep 5	
+	sudo python main.py --strat -f s32.txt -s 3 -t bas
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f strat
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=jellyfish,DIR=/home/mohamad/simulation/lib/inputs/topologies/jellyfish/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=ksp &
+	sleep 5	
+	sudo python main.py --jellyfish -f s32.txt -s 3 -t bas -i $i
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f jellyfish
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=xpander,DIR=/home/mohamad/simulation/lib/inputs/topologies/xpander/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=ksp &
+	sleep 5	
+	sudo python main.py --xpander -f s32.txt -s 3 -t bas -i $i
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f xpander
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+python get_http_result.py > basksp.txt
+> /home/mohamad/simulation/lib/results/http_files/jellyfish.txt
+> /home/mohamad/simulation/lib/results/http_files/xpander.txt
+> /home/mohamad/simulation/lib/results/http_files/strat.txt
+> /home/mohamad/simulation/lib/results/traffic_rp.txt
+> /home/mohamad/simulation/lib/results/traffic_rs.txt
+> /home/mohamad/simulation/lib/results/traffic_bas.txt
+> /home/mohamad/simulation/lib/results/traffic_otm.txt
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=strat,DIR=/home/mohamad/simulation/lib/inputs/topologies/strat/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=ksp &
+	sleep 5	
+	sudo python main.py --strat -f s32.txt -s 3 -t otm
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f strat
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=jellyfish,DIR=/home/mohamad/simulation/lib/inputs/topologies/jellyfish/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=ksp &
+	sleep 5	
+	sudo python main.py --jellyfish -f s32.txt -s 3 -t otm -i $i
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f jellyfish
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+for i in 1 2
+do
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+	sleep 2
+	sudo python pox/pox.py forwarding.DCController --topo=xpander,DIR=/home/mohamad/simulation/lib/inputs/topologies/xpander/-filename=s32.txt-hosts_per_switch=3-bw=1 --routing=ksp &
+	sleep 5	
+	sudo python main.py --xpander -f s32.txt -s 3 -t otm -i $i
+	sleep 5
+	echo "done.."
+	echo "parsing"
+	python parser.py -f xpander
+	sleep 5
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/logs/*
+	sudo rm -r /home/mohamad/simulation/lib/results/http_files/data/*
+	sudo mn -c
+	sudo kill -9 $(ps -A | grep python | awk '{print $1}')
+done
+
+python get_http_result.py > otmksp.txt
+> /home/mohamad/simulation/lib/results/http_files/jellyfish.txt
+> /home/mohamad/simulation/lib/results/http_files/xpander.txt
+> /home/mohamad/simulation/lib/results/http_files/strat.txt
+> /home/mohamad/simulation/lib/results/traffic_rp.txt
+> /home/mohamad/simulation/lib/results/traffic_rs.txt
+> /home/mohamad/simulation/lib/results/traffic_bas.txt
+> /home/mohamad/simulation/lib/results/traffic_otm.txt
+

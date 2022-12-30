@@ -1,0 +1,19 @@
+#C:/Users/umroot/PycharmProjects/datacenter/generate_ad_of_jellyfish.py
+# GMT Sat Jun 25 02:00:19 2022
+# 
+3 4 7 13 12 11 2 
+4 6 15 8 16 7 
+7 5 13 12 15 
+6 1 14 5 13 16  
+5 13 16 9 1 
+13 1 15 
+15 8 14 9 
+16 2 11 9 
+2 14 1 10 12 
+1 8 10 
+9 11 10 12 
+11 14 8 10 
+8 14 10 
+10 12 
+12 14 
+14 
